@@ -1,0 +1,54 @@
+<main class="login-page">
+  <div class="login-page-header">
+    <i class="fas fa-random login-page-header-icon"></i>
+    <h1 class="login-page-title">App Name</h1>
+  </div>
+  <h3 class="login-page-subtitle">Welcome Back!</h3>
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+    <div class="login-input-group">
+      <label for="email" class="login-input-label">Email</label>
+      <input
+        id="email"
+        type="text"
+        class="login-input-field"
+        placeholder="Enter your email"
+        formControlName="email"
+        (input)="onEmailUpdated()"
+        (focus)="onEmailUpdated()"
+      />
+      @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
+      <div class="login-error-message">{{ emailErrorMessage() }}</div>
+      }
+    </div>
+    <div class="login-input-group">
+      <label for="password" class="login-input-label">Password</label>
+      <input
+        id="password"
+        type="password"
+        class="login-input-field"
+        placeholder="Enter your password"
+        formControlName="password"
+        (input)="onPasswordUpdated()"
+        (focus)="onPasswordUpdated()"
+      />
+      @if (loginForm.get('password')?.touched &&
+      loginForm.get('password')?.invalid) {
+      <div class="login-error-message">{{ passwordErrorMessage() }}</div>
+      }
+    </div>
+
+    <button type="submit" [disabled]="!loginForm.valid" class="login-button">
+      Login
+    </button>
+    <div class="login-alternative-methods-section">
+      <div class="login-alternative-methods-text">or login with</div>
+      <i class="fab fa-facebook login-social-icon"></i>
+      <i class="fab fa-twitter login-social-icon"></i>
+      <i class="fab fa-google login-social-icon"></i>
+    </div>
+    <div class="login-bottom-section">
+      <div class="forgot-password">Forgot Password?</div>
+      <div class="forgot-password" (click)="navigateToSignUp()">Sign Up</div>
+    </div>
+  </form>
+</main>

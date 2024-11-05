@@ -1,0 +1,69 @@
+<main class="sign-up-page">
+  <div class="sign-up-page-header">
+    <i class="fas fa-random sign-up-page-header-icon"></i>
+    <h1 class="sign-up-page-title">App Name</h1>
+  </div>
+  <h3 class="sign-up-page-subtitle">Sign Up!</h3>
+  <form [formGroup]="signUpForm" (ngSubmit)="signUp()" class="sign-up-form">
+    <div class="sign-up-input-group">
+      <label for="username" class="sign-up-input-label">Username</label>
+      <input
+        id="username"
+        type="text"
+        class="sign-up-input-field"
+        placeholder="Enter your username"
+        formControlName="username"
+        (input)="onUsernameUpdated()"
+        (focus)="onUsernameUpdated()"
+      />
+      @if (signUpForm.get('username')?.touched) {
+      <div class="sign-up-error-message">{{ usernameErrorMessage() }}</div>
+      }
+    </div>
+    <div class="sign-up-input-group">
+      <label for="email" class="sign-up-input-label">Email</label>
+      <input
+        id="email"
+        type="text"
+        class="sign-up-input-field"
+        placeholder="Enter your email"
+        formControlName="email"
+        (input)="onEmailUpdated()"
+        (focus)="onEmailUpdated()"
+      />
+      @if (signUpForm.get('email')?.touched && signUpForm.get('email')?.invalid)
+      {
+      <div class="sign-up-error-message">{{ emailErrorMessage() }}</div>
+      }
+    </div>
+    <div class="sign-up-input-group">
+      <label for="password" class="sign-up-input-label">Password</label>
+      <input
+        id="password"
+        type="password"
+        class="sign-up-input-field"
+        placeholder="Enter your password"
+        formControlName="password"
+        (input)="onPasswordUpdated()"
+        (focus)="onPasswordUpdated()"
+      />
+      @if (signUpForm.get('password')?.touched &&
+      signUpForm.get('password')?.invalid) {
+      <div class="sign-up-error-message">{{ passwordErrorMessage() }}</div>
+      }
+    </div>
+
+    <button type="submit" [disabled]="!signUpForm.valid" class="sign-up-button">
+      Sign Up
+    </button>
+    <div class="sign-up-alternative-methods-section">
+      <div class="sign-up-alternative-methods-text">or login with</div>
+      <i class="fab fa-facebook sign-up-social-icon"></i>
+      <i class="fab fa-twitter sign-up-social-icon"></i>
+      <i class="fab fa-google sign-up-social-icon"></i>
+    </div>
+    <div class="sign-up-bottom-section">
+      <div class="forgot-password" (click)="navigateToLogin()">Login</div>
+    </div>
+  </form>
+</main>

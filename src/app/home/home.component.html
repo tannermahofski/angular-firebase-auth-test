@@ -1,0 +1,21 @@
+<header class="home-header">
+  <div class="home-header-left-section">
+    <fa-icon [icon]="['fas', 'bars']"></fa-icon>
+    <h1 class="home-header-left-section-text">App Name</h1>
+  </div>
+  <div class="home-header-right-section">
+    <fa-icon
+      class="home-header-right-section-icon"
+      [icon]="['fas', 'arrow-right-from-bracket']"
+      (click)="logout()"
+    ></fa-icon>
+    <fa-icon
+      class="home-header-right-section-icon"
+      [icon]="['fas', 'user']"
+      (click)="profile()"
+    ></fa-icon>
+    <h1 class="home-header-right-section-text">
+      {{ (user$ | async)?.displayName ?? "User" }}
+    </h1>
+  </div>
+</header>
